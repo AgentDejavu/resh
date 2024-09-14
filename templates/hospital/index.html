@@ -1,0 +1,262 @@
+{% extends 'hospital/homebase.html' %}
+{% load static %}
+
+{% block content %}
+
+<head>
+  <style>
+    .jumbotron {
+      margin-top: 0;
+      margin-bottom: 0;
+      background-image: url('{% static "images/cover.jpg" %}');
+      background-size: cover;
+      background-repeat: no-repeat;
+      color: white;
+      text-align: center;
+      padding: 100px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .jumbotron::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+
+    .about-section {
+      padding: 60px;
+      background-color: #f8f9fa;
+    }
+
+    .about-section h2 {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .about-section p {
+      text-align: justify;
+      line-height: 1.6;
+    }
+
+    .service-box {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid #ddd;
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+
+    .service-box img {
+      transition: transform 0.3s ease;
+    }
+
+    .service-box:hover img {
+      transform: scale(1.1);
+    }
+
+    .service-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .service-box-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .service-box-description {
+      color: #555;
+      margin-top: 0.5rem;
+    }
+
+    .service-box-button {
+      background-color: #531ae4;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1rem;
+      border-radius: 0.25rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .service-box-button:hover {
+      background-color: #6e288f;
+    }
+
+    .gallery-section {
+      padding: 60px;
+      background-color: #f8f9fa;
+    }
+
+    .gallery-section h2 {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .gallery-images {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 10px;
+    }
+
+    .gallery-images img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .carousel {
+      margin: 50px 0;
+    }
+
+    .carousel img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+    }
+
+    .scroll-up-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background-color: #531ae4;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .scroll-up-btn:hover {
+      background-color: #6e288f;
+    }
+
+    .scroll-up-btn img {
+      width: 24px;
+      height: 24px;
+    }
+  </style>
+</head>
+
+<!-- Jumbotron -->
+<div class="jumbotron">
+  <h1 class="display-4">Hospital Management System</h1>
+  <p class="lead">Caring for you and your family with state-of-the-art healthcare.</p>
+  <a class="btn btn-primary btn-lg" href="/patientsignup" role="button">Book Appointment</a>
+</div>
+
+<!-- About Section -->
+<section class="about-section">
+  <div class="container">
+    <h2>About Us</h2>
+    <p>At Hospital Management System, we believe in providing the best healthcare to every patient. Our team of dedicated doctors, nurses, and staff work tirelessly to offer a full range of medical services, combining advanced technology with compassionate care. With decades of experience in the medical field, we strive to improve the health of our community by ensuring the best patient outcomes.</p>
+  </div>
+</section>
+
+<!-- Automatic Moving Picture (Carousel) -->
+<div id="hospitalCarousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'images/hospital_1.jpg' %}" class="d-block w-100" alt="Hospital Exterior">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/hospital_2.jpg' %}" class="d-block w-100" alt="Operation Theatre">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/hospital_3.jpg' %}" class="d-block w-100" alt="Patient Room">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#hospitalCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#hospitalCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Services Section -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center mb-5">Our Services</h2>
+    <div class="row">
+      <!-- Service Box 1 -->
+      <div class="col-md-4 mb-4">
+        <div class="service-box p-3 bg-white">
+          <img src="{% static 'images/ambu.jpeg' %}" alt="Emergency Services" class="img-fluid">
+          <h3 class="service-box-title mt-3">Emergency Services</h3>
+          <p class="service-box-description">We provide 24/7 emergency medical services to ensure you receive the care you need.</p>
+          <a href="/emergency" class="service-box-button">Learn More</a>
+        </div>
+      </div>
+      <!-- Service Box 2 -->
+      <div class="col-md-4 mb-4">
+        <div class="service-box p-3 bg-white">
+          <img src="{% static 'images/sugu.jpeg' %}" alt="Surgical Services" class="img-fluid">
+          <h3 class="service-box-title mt-3">Surgical Services</h3>
+          <p class="service-box-description">Our state-of-the-art surgical facilities and expert surgeons are here to help with various surgical needs.</p>
+          <a href="/surgical" class="service-box-button">Learn More</a>
+        </div>
+      </div>
+      <!-- Service Box 3 -->
+      <div class="col-md-4 mb-4">
+        <div class="service-box p-3 bg-white">
+          <img src="{% static 'images/cardio.jpg' %}" alt="Cardiology" class="img-fluid">
+          <h3 class="service-box-title mt-3">Cardiology</h3>
+          <p class="service-box-description">Offering comprehensive cardiovascular care, from diagnostics to treatment and ongoing management.</p>
+          <a href="/cardiology" class="service-box-button">Learn More</a>
+        </div>
+      </div>
+      <!-- Service Box 4 -->
+      <div class="col-md-4 mb-4">
+        <div class="service-box p-3 bg-white">
+          <img src="{% static 'images/maternity.jpg' %}" alt="Maternity Care" class="img-fluid">
+          <h3 class="service-box-title mt-3">Maternity Care</h3>
+          <p class="service-box-description">Providing exceptional care for mothers and babies, from prenatal to postnatal care and beyond.</p>
+          <a href="/maternity" class="service-box-button">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery Section -->
+<section class="gallery-section">
+  <div class="container">
+    <h2>Gallery</h2>
+    <div class="gallery-images">
+      <img src="{% static 'images/gallery_1.jpg' %}" alt="Hospital Facility">
+      <img src="{% static 'images/gallery_2.jpg' %}" alt="Emergency Room">
+      <img src="{% static 'images/gallery_3.jpg' %}" alt="Surgical Room">
+      <img src="{% static 'images/gallery_4.jpg' %}" alt="Doctor Consultation">
+    </div>
+  </div>
+</section>
+
+<!-- Scroll-Up Button -->
+<button class="scroll-up-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+  <img src="{% static 'images/up-arrow.svg' %}" alt="Scroll Up">
+</button>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+
+{% endblock content %}
+
